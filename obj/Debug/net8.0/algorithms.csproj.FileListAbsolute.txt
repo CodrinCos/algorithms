@@ -1,0 +1,15 @@
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\bin\Debug\net8.0\algorithms.exe
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\bin\Debug\net8.0\algorithms.deps.json
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\bin\Debug\net8.0\algorithms.runtimeconfig.json
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\bin\Debug\net8.0\algorithms.dll
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\bin\Debug\net8.0\algorithms.pdb
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\algorithms.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\algorithms.AssemblyInfoInputs.cache
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\algorithms.AssemblyInfo.cs
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\algorithms.csproj.CoreCompileInputs.cache
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\algorithms.sourcelink.json
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\algorithms.dll
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\refint\algorithms.dll
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\algorithms.pdb
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\algorithms.genruntimeconfig.cache
+c:\Users\codri\Desktop\Projects-Din-Tutoriale\algorithms\obj\Debug\net8.0\ref\algorithms.dll
