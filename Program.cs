@@ -4,7 +4,7 @@
     var indexRight = nums.Length - 1;
     var maxArea = 0;
 
-    while (indexLeft != indexRight)
+    while (indexLeft < indexRight)
     {
         var currentArea = int.Min(nums[indexLeft], nums[indexRight]) * (indexRight - indexLeft);
         if (currentArea > maxArea)
