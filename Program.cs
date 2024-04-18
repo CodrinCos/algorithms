@@ -12,7 +12,7 @@
             maxArea = currentArea;
         }
 
-        if (nums[indexLeft] == int.Min(nums[indexLeft], nums[indexRight]))
+        if (nums[indexLeft] < nums[indexRight])
         {
             indexLeft++;
         }
