@@ -1,34 +1,56 @@
-﻿int GetMaxContainerArea(int[] nums)
+﻿// var elevationArray = [0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2];
+
+/*
+1. Identify the pointer with the lesser value
+2. Is this pointer value greater than or equal to max on that side
+  yes -> update max on that side
+  no -> get water for pointer, add to total
+3. move pointer inwards
+4. repeat for other pointer
+ */
+int GetTrappedRainwater(List<int> heights)
 {
-    var indexLeft = 0;
-    var indexRight = nums.Length - 1;
-    var maxArea = 0;
+    var left = 0;
+    var right = heights.Count - 1;
+    var totalWater = 0;
+    var maxLeft = 0;
+    var maxRight = 0;
 
-    while (indexLeft < indexRight)
+    while (left < right)
     {
-        var currentArea = int.Min(nums[indexLeft], nums[indexRight]) * (indexRight - indexLeft);
-        if (currentArea > maxArea)
+        if (heights[left] <= heights[right])
         {
-            maxArea = currentArea;
-        }
+            if (heights[left] > maxLeft)
+            {
+                maxLeft = heights[left];
+            }
+            else
+            {
+                totalWater += maxLeft - heights[left];
+            }
 
-        if (nums[indexLeft] < nums[indexRight])
-        {
-            indexLeft++;
+            left++;
         }
         else
         {
-            indexRight--;
+            if (heights[right] >= maxRight)
+            {
+                maxRight = heights[right];
+            }
+            else
+            {
+                totalWater += maxRight - heights[right];
+            }
+
+            right--;
         }
     }
 
-    return maxArea;
+    return totalWater;
 }
 
-Console.WriteLine("Given an array of positive int, each int is a height of vertical line");
-Console.WriteLine("Find 2 lines which together with the x axis forms a container that would hold the greatest amount");
-Console.WriteLine("of water.Return the area of water it would hold.");
+Console.WriteLine("Trapped water");
 
-var maxContainerArea = GetMaxContainerArea([1, 2, 10, 7, 2, 3, 6, 5, 4, 3]);
+var amount = GetTrappedRainwater([0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2]);
 
-Console.WriteLine(maxContainerArea.ToString());
+Console.WriteLine(amount);
