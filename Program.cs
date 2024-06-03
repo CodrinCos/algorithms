@@ -52,13 +52,41 @@ bool isValidPalindromeFromMiddle(string s)
     return true;
 }
 
-string valid = "abba";
-string invalid = "aac";
+bool isValidSubPalindrome(string s, int left, int right)
+{
+    while (left < right)
+    {
+        if (s[left] != s[right])
+        {
+            return false;
+        }
 
-Console.WriteLine(isValidPalindrome(valid));
+        left++;
+        right--;
+    }
 
-Console.WriteLine(isValidPalindrome(invalid));
+    return true;
+}
 
-Console.WriteLine(isValidPalindromeFromMiddle(valid));
+bool isAlmostPalindrome(string s)
+{
+    var leftIndex = 0;
+    var rightIndex = s.Length - 1;
 
-Console.WriteLine(isValidPalindromeFromMiddle(invalid));
+    while (leftIndex < rightIndex)
+    {
+        if (s[leftIndex] != s[rightIndex])
+        {
+            return isValidSubPalindrome(s, leftIndex + 1, rightIndex) || isValidSubPalindrome(s, leftIndex, rightIndex - 1);
+        }
+
+        leftIndex++;
+        rightIndex--;
+    }
+
+    return true;
+}
+
+string valid = "abccdba";
+
+Console.WriteLine(isAlmostPalindrome(valid));
