@@ -3,28 +3,26 @@
 Console.WriteLine("Add numbers: ");
 int[] sortedNumbers = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
 
-BubbleSort(sortedNumbers);
+SelectSort(sortedNumbers);
 
-static void BubbleSort(int[] arr)
+static void SelectSort(int[] sortedNumbers)
 {
-    int n = arr.Length;
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < sortedNumbers.Length - 1; i++)
     {
-        for (int j = 0; j < n - i - 1; j++)
+        for (int j = i + 1; j < sortedNumbers.Length; j++)
         {
-            if (arr[j] > arr[j + 1])
+            if (sortedNumbers[i] > sortedNumbers[j])
             {
-                // swap arr[j] and arr[j+1]
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+                int temp = sortedNumbers[i];
+                sortedNumbers[i] = sortedNumbers[j];
+                sortedNumbers[j] = temp;
             }
         }
     }
-
-    Console.WriteLine("Sorted array: ");
-    foreach (var item in arr)
+    Console.WriteLine("Sorted numbers: ");
+    foreach (var number in sortedNumbers)
     {
-        Console.Write(item + " ");
+        Console.Write(number + " ");
     }
 }
+
