@@ -3,24 +3,24 @@
 Console.WriteLine("Add numbers: ");
 int[] sortedNumbers = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
 
-SelectSort(sortedNumbers);
+InsertSort(sortedNumbers);
 
-static void SelectSort(int[] sortedNumbers)
+static void InsertSort(int[] arr)
 {
-    for (int i = 0; i < sortedNumbers.Length - 1; i++)
+    for (int i = 1; i < arr.Length; i++)
     {
-        for (int j = i + 1; j < sortedNumbers.Length; j++)
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key)
         {
-            if (sortedNumbers[i] > sortedNumbers[j])
-            {
-                int temp = sortedNumbers[i];
-                sortedNumbers[i] = sortedNumbers[j];
-                sortedNumbers[j] = temp;
-            }
+            arr[j + 1] = arr[j];
+            j--;
         }
+        arr[j + 1] = key;
     }
+
     Console.WriteLine("Sorted numbers: ");
-    foreach (var number in sortedNumbers)
+    foreach (int number in arr)
     {
         Console.Write(number + " ");
     }
