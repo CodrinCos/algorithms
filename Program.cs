@@ -1,28 +1,57 @@
-﻿Console.WriteLine("Bubble sort...");
+﻿Console.WriteLine("Quick sort...");
 
 Console.WriteLine("Add numbers: ");
 int[] sortedNumbers = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
 
-InsertSort(sortedNumbers);
+QuickSort(sortedNumbers);
 
-static void InsertSort(int[] arr)
+
+static void QuickSort(int[] arr)
 {
-    for (int i = 1; i < arr.Length; i++)
-    {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= 0 && arr[j] > key)
-        {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-        arr[j + 1] = key;
-    }
+    QuickSortRecursion(arr, 0, arr.Length - 1);
 
-    Console.WriteLine("Sorted numbers: ");
-    foreach (int number in arr)
-    {
-        Console.Write(number + " ");
-    }
+    Console.WriteLine(string.Join(" ", arr));
 }
 
+static void QuickSortRecursion(int[] array, int start, int end)
+{
+    if(start >= end)
+    {
+        return;
+    }
+
+    int pivot = start;
+    int left = start + 1;
+    int right = end;
+
+    while (right >= left)
+    {
+        if (array[pivot] < array[left] && array[pivot] > array[right])
+        {
+            Swap(array, left, right);
+        }
+
+        if (array[left] <= array[pivot])
+        {
+            left++;
+        }
+
+        if (array[right] >= array[pivot])
+        {
+            right--;
+        }
+
+    }
+
+    Swap(array, pivot, right);
+    QuickSortRecursion(array, start, right - 1);
+    QuickSortRecursion(array, right + 1, end);
+
+}
+
+static void Swap(int[] array, int left, int right)
+{
+    int temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
+}   
