@@ -1,57 +1,65 @@
-﻿Console.WriteLine("Quick sort...");
+﻿
+
+
+Console.WriteLine("Quick sort...");
 
 Console.WriteLine("Add numbers: ");
 int[] sortedNumbers = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
 
-QuickSort(sortedNumbers);
+MergeSort(sortedNumbers);
 
-
-static void QuickSort(int[] arr)
+Console.WriteLine("Sorted numbers: ");
+foreach (int number in sortedNumbers)
 {
-    QuickSortRecursion(arr, 0, arr.Length - 1);
-
-    Console.WriteLine(string.Join(" ", arr));
+    Console.Write(number + " ");
 }
 
-static void QuickSortRecursion(int[] array, int start, int end)
+static int[] MergeSort(int[] sortedNumbers)
 {
-    if(start >= end)
-    {
-        return;
-    }
+    int n = sortedNumbers.Length;
+    if (n < 2)
+        return sortedNumbers;
 
-    int pivot = start;
-    int left = start + 1;
-    int right = end;
+    int mid = n / 2;
+    int[] left = new int[mid];
+    int[] right = new int[n - mid];
 
-    while (right >= left)
-    {
-        if (array[pivot] < array[left] && array[pivot] > array[right])
-        {
-            Swap(array, left, right);
-        }
+    Array.Copy(sortedNumbers, left, mid);
+    Array.Copy(sortedNumbers, mid, right, 0, n - mid);
 
-        if (array[left] <= array[pivot])
-        {
-            left++;
-        }
+    MergeSort(left);
+    MergeSort(right);
 
-        if (array[right] >= array[pivot])
-        {
-            right--;
-        }
+    Merge(sortedNumbers, left, right);
 
-    }
-
-    Swap(array, pivot, right);
-    QuickSortRecursion(array, start, right - 1);
-    QuickSortRecursion(array, right + 1, end);
-
+    return sortedNumbers;
 }
 
-static void Swap(int[] array, int left, int right)
+static void Merge(int[] sortedNumbers, int[] left, int[] right)
 {
-    int temp = array[left];
-    array[left] = array[right];
-    array[right] = temp;
-}   
+    int i = 0, j = 0, k = 0;
+    while (i < left.Length && j < right.Length)
+    {
+        if (left[i] <= right[j])
+        {
+            sortedNumbers[k++] = left[i++];
+        }
+        else
+        {
+            sortedNumbers[k++] = right[j++];
+        }
+    }
+    while (i < left.Length)
+    {
+        sortedNumbers[k++] = left[i++];
+    }
+    while (j < right.Length)
+    {
+        sortedNumbers[k++] = right[j++];
+    }
+}
+
+
+
+
+
