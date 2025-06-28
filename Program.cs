@@ -1,91 +1,66 @@
 ﻿
-Console.WriteLine("Build binary tree with preorder and inorder");
+Console.WriteLine("Reverse linked list");
 
+var start = new Node(1);
 
-public class Alg
+var currentNode = new Node(2);
+start.Next = currentNode;
+for (int i=3; i<10; i++)
 {
-    public List<TreeNode> Tree = new();
-    //o(N 2)
-    public static TreeNode? BuildTree(int[] preorder, int[] inorder)
-    {
-        if (inorder.Length == 0)
-        {
-            return null;
-        }
-
-        if (preorder.Length == 1)
-        {
-            return new TreeNode(preorder[0]);
-        }
-
-        var rootValue = preorder[0];
-        preorder = [.. preorder.Skip(1)];
-        bool found = false; int indexInorder = 0;
-
-        while(!found)
-        {
-            if (inorder[indexInorder] == rootValue) found = true;
-            else indexInorder++;
-        }
-
-        TreeNode node = new TreeNode(rootValue);
-
-        node.left = BuildTree(preorder, [.. inorder.Take(inorder.Length - indexInorder)]);
-        node.right = BuildTree(preorder, [.. inorder.Skip(indexInorder + 1)]);
-
-        return node;
-    }
-
-    //OPTIMIZED
-    public static TreeNode? BuildTreeEfficient(int[] preorder, int[] inorder)
-    {
-        var memory = new Dictionary<int, int>();
-
-        for (int i = 0; i < inorder.Length; i++)
-        {
-            memory[inorder[i]] = i;
-        }
-
-        var root = BuildRecursively(preorder, inorder, 0, inorder.Length - 1, memory);
-    }
-
-    private static object BuildRecursively(int[] preorder, int[] inorder, int leftPointer, int rightPointer, 
-        Dictionary<int, int> memory)
-    {
-        throw new NotImplementedException();
-    }
-
-    public static void InvertBinaryTree(TreeNode? root)
-    {
-        if (root == null)
-        {
-            return;
-        }
-
-        // Swap the left and right children
-        var temp = root.left;
-        root.left = root.right;
-        root.right = temp;
-        // Recursively invert the left and right subtrees
-        InvertBinaryTree(root.left);
-        InvertBinaryTree(root.right);
-    }
-
-    public static TreeNode? CreateBinarySearchTree(int[] values)
-    {
-
-    }
+    var nodeToAdd = new Node(i);
+    currentNode.Next = nodeToAdd;
+    currentNode = currentNode.Next;
 }
 
-public class TreeNode
+currentNode = start;
+while (currentNode != null)
 {
-    public int val;
-    public TreeNode? left;
-    public TreeNode? right;
-    public TreeNode(int x)
+    Console.Write(currentNode.Value + " ");
+    currentNode = currentNode.Next;
+}
+
+Console.WriteLine("Reversed");
+var newStart = ReverseLinkedList(start);
+
+currentNode = newStart;
+while (currentNode != null)
+{
+    Console.Write(currentNode.Value + " ");
+    currentNode = currentNode.Next;
+}
+
+Node ReverseLinkedList(Node head)
+{
+    // Initialize three pointers: curr, prev and next
+    Node curr = head;
+    Node prev = null;
+    Node next;
+
+    // Traverse all the nodes of Linked List
+    while (curr != null)
     {
-        val = x;
-        left = null;
-        right = null;
+
+        // Store next
+        next = curr.Next;
+
+        // Reverse current node's next pointer
+        curr.Next = prev;
+
+        // Move pointers one position ahead
+        prev = curr;
+        curr = next;
     }
+
+    // Return the head of reversed linked list
+    return prev;
+}
+
+public class Node 
+{
+    public Node(int value)
+    {
+        Value = value;   
+    }
+    public int Value { get; set; }
+    public Node? Next { get; set; }
 }
